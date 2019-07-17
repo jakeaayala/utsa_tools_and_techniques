@@ -1,17 +1,8 @@
----
-title: "HW4_tidy2"
-author: "Jake Ayala"
-date: "7/16/2019"
-output: html_document
----
 
-```{r}
 
 library(dplyr)
 
-```
 
-```{r}
 
 # read in train, test, and sub files
 train.x <- read.table(file = "~/Desktop/Tools and Techniques/UCI HAR Dataset/train/X_train.txt")
@@ -24,10 +15,7 @@ train.sub <- read.table(file = "~/Desktop/Tools and Techniques/UCI HAR Dataset/t
 test.sub <- read.table(file = "~/Desktop/Tools and Techniques/UCI HAR Dataset/test/subject_test.txt")
 
 
-```
 
-
-```{r}
 
 # merge train, test, and sub
 x <- rbind(train.x, test.x)
@@ -39,9 +27,6 @@ data <- cbind(subject, data1)
 
 dim(data)
 
-```
-
-```{r}
 
 # read features file
 features <- read.table("~/Desktop/Tools and Techniques/UCI HAR Dataset/features.txt")
@@ -51,10 +36,6 @@ names(data) <- c("SubjectID", "ActivityName", as.character(features$V2))
 
 str(features)
 
-```
-
-
-```{r}
 
 # extract only mean and std features
 sub.sd.mean <- features$V2[grep("-mean\\(\\)|-std\\(\\)", features[, 2])]
@@ -65,9 +46,6 @@ selColumns <- c("SubjectID", "ActivityName", as.character(sub.sd.mean))
 data <- subset(data, select = selColumns)
 
 
-```
-
-```{r}
 
 
 # read activity labels file
@@ -88,9 +66,7 @@ write.table(data, "tidy_data.txt")
 str(data)
 
 
-```
 
-```{r}
 
 # group data
 data_group <- group_by(data, SubjectID, ActivityName)
@@ -98,14 +74,12 @@ data_group <- group_by(data, SubjectID, ActivityName)
 # find avg
 data_avg <- summarise_each(data_group, funs(mean))
 
-```
 
-```{r}
 
 # write to txt
 write.table(data_avg, "tidy_avg.txt", row.names = FALSE)
 
-```
+
 
 
 
