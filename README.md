@@ -71,5 +71,5 @@ Jorge L. Reyes-Ortiz, Alessandro Ghio, Luca Oneto, Davide Anguita. November 2012
 
 ========
 
-In this GitHub repository there is only one script (tidy_data.r) that performs the required actions to clean the data set.
+In this GitHub repository there is only one script (run_analysis.r) that performs the required actions to clean the data set.
 
